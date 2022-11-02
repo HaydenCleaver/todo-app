@@ -6,6 +6,11 @@ import Header from '../Header/Header';
 import List from '../List/List';
 import { v4 as uuid } from 'uuid';
 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 const useStyles = createStyles((theme) => ({
   formHeading: {
     fontSize: theme.fontSizes.lg,
@@ -94,21 +99,6 @@ const ToDo = () => {
               step={1}
               mb="lg"
             />
-
-            {/* <label>
-              <span>To Do Item</span>
-              <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-            </label> */}
-
-            {/* <label>
-              <span>Assigned To</span>
-              <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-            </label> */}
-
-            {/* <label>
-              <span>Difficulty</span>
-              <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-            </label> */}
 
             <label>
               <Button type="submit">Add Item</Button>

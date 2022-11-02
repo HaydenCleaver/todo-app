@@ -1,4 +1,4 @@
-import {Header, Navbar, Text, createStyles} from '@mantine/core'
+import { Header, Navbar, Text, createStyles } from '@mantine/core'
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -19,17 +19,18 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.sm,
   }
 }))
-const HeaderComponent = ({incomplete}) => {
-  
+const HeaderComponent = ({ incomplete }) => {
+
   const { classes } = useStyles();
   return (
     <Header data-testid="todo-header">
       <Navbar className={classes.navbar}>
         <Text>Home</Text>
+        <Text>Settings</Text>
       </Navbar>
       <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
     </Header>
-  )  
+  )
 }
 
 export default HeaderComponent;
