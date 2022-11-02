@@ -4,13 +4,17 @@ export const SettingsContext = React.createContext();
 
 const Settings = ({children}) => {
 
-const[hideStatus] = useState(true);
-const[itemNumber] = useState(5);
-const[sortField] = useState('');
+const[hideStatus, setHideStatus] = useState(false);
+const[itemNumber, setItemNumber] = useState(4);
+const[sortField, setSortField] = useState('difficulty');
 
-
+const values = {
+  hideStatus,
+  itemNumber,
+  sortField,
+}
   return (
-    <SettingsContext.Provider value ={{ hideStatus, itemNumber, sortField }}>
+    <SettingsContext.Provider value={values}>
       {children}
     </SettingsContext.Provider>
   )
