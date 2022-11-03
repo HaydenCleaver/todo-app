@@ -6,11 +6,26 @@ import Header from '../Header/Header';
 import List from '../List/List';
 import { v4 as uuid } from 'uuid';
 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 const useStyles = createStyles((theme) => ({
   formHeading: {
     fontSize: theme.fontSizes.lg,
     fontWeight: 'bold',
   },
+  h1: {
+    backgroundColor: theme.colors.gray,
+    color: theme.colors.gray[0],
+    width: '75%',
+    margin: 'auto',
+    fontSize: theme.fontSizes.lg,
+    padding: theme.spacing.md,
+    marginBottom: theme.spacing.sm,
+    marginTop: theme.spacing.sm,
+  }
 }));
 
 const ToDo = () => {
@@ -61,7 +76,8 @@ const ToDo = () => {
 
   return (
     <>
-      <Header incomplete={incomplete}></Header>
+      {/* <Header incomplete={incomplete}></Header> */}
+      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
       <Grid style={{width: '80%', margin: 'auto'}}>
         <Grid.Col xs={12} sm={4}>
           <Card withBorder p="xs">
@@ -95,21 +111,6 @@ const ToDo = () => {
               mb="lg"
             />
 
-            {/* <label>
-              <span>To Do Item</span>
-              <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-            </label> */}
-
-            {/* <label>
-              <span>Assigned To</span>
-              <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-            </label> */}
-
-            {/* <label>
-              <span>Difficulty</span>
-              <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-            </label> */}
-
             <label>
               <Button type="submit">Add Item</Button>
             </label>
@@ -117,7 +118,7 @@ const ToDo = () => {
           </Card>
         </Grid.Col>
         <Grid.Col xs={12} sm={8}>
-          <List list={list} toggleComplete={toggleComplete}/>
+          <List list={list} toggleComplete={toggleComplete} deleteItem={deleteItem}/>
         </Grid.Col>
       </Grid>
 

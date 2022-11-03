@@ -1,4 +1,6 @@
-import {Header, Navbar, Text, createStyles} from '@mantine/core'
+import { Group, Header, Navbar, Text, createStyles } from '@mantine/core'
+import { Link } from 'react-router-dom';
+import Login from '../Login/Login';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -6,30 +8,29 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.sm,
     color: theme.colors.gray[0],
     fontSize: theme.fontSizes.lg,
-
   },
-  h1: {
-    backgroundColor: theme.colors.gray,
+  link: {
+    textDecoration: 'none',
     color: theme.colors.gray[0],
-    width: '75%',
-    margin: 'auto',
-    fontSize: theme.fontSizes.lg,
-    padding: theme.spacing.md,
-    marginBottom: theme.spacing.sm,
-    marginTop: theme.spacing.sm,
   }
 }))
-const HeaderComponent = ({incomplete}) => {
-  
+
+const HeaderComponent = ({ incomplete }) => {
+
   const { classes } = useStyles();
   return (
     <Header data-testid="todo-header">
       <Navbar className={classes.navbar}>
-        <Text>Home</Text>
+        <Group position spacing='xs'>
+          <Group position='left'>
+            <Link to ="/" default>Home</Link>
+            <Link to ="/UserSettings">Settings</Link>
+          </Group>
+          <Login/>
+        </Group>
       </Navbar>
-      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
     </Header>
-  )  
+  )
 }
 
 export default HeaderComponent;
