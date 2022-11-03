@@ -16,6 +16,16 @@ const useStyles = createStyles((theme) => ({
     fontSize: theme.fontSizes.lg,
     fontWeight: 'bold',
   },
+  h1: {
+    backgroundColor: theme.colors.gray,
+    color: theme.colors.gray[0],
+    width: '75%',
+    margin: 'auto',
+    fontSize: theme.fontSizes.lg,
+    padding: theme.spacing.md,
+    marginBottom: theme.spacing.sm,
+    marginTop: theme.spacing.sm,
+  }
 }));
 
 const ToDo = () => {
@@ -66,7 +76,8 @@ const ToDo = () => {
 
   return (
     <>
-      <Header incomplete={incomplete}></Header>
+      {/* <Header incomplete={incomplete}></Header> */}
+      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
       <Grid style={{width: '80%', margin: 'auto'}}>
         <Grid.Col xs={12} sm={4}>
           <Card withBorder p="xs">
@@ -107,7 +118,7 @@ const ToDo = () => {
           </Card>
         </Grid.Col>
         <Grid.Col xs={12} sm={8}>
-          <List list={list} toggleComplete={toggleComplete}/>
+          <List list={list} toggleComplete={toggleComplete} deleteItem={deleteItem}/>
         </Grid.Col>
       </Grid>
 
