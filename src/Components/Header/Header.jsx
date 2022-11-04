@@ -21,7 +21,7 @@ const HeaderComponent = ({ incomplete }) => {
   return (
     <Header data-testid="todo-header">
       <Navbar className={classes.navbar}>
-        <Group position spacing='xs'>
+        <Group position='apart' spacing='xs'>
           <Group position='left'>
             <Link to ="/" default>Home</Link>
             <Link to ="/UserSettings">Settings</Link>
