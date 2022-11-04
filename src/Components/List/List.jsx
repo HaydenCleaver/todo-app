@@ -2,6 +2,7 @@ import { Pagination, Card, createStyles, Badge, Text, Group, CloseButton} from '
 import {When} from 'react-if';
 import {useState, useContext} from 'react';
 import {SettingsContext} from '../../Context/Settings/Settings';
+import Auth from '../Auth/Auth';
 
 const useStyles = createStyles((theme) => ({
   badge: {
@@ -40,7 +41,9 @@ const List = ({list, toggleComplete, deleteItem}) => {
                 </Badge>
                 <Text>{item.assignee}</Text>
               </Group>
-              <CloseButton title="delete item" onClick={()=> deleteItem(item.id)}/>
+              <Auth>
+                <CloseButton title="delete item" onClick={()=> deleteItem(item.id)}/>
+              </Auth>
             </Group>
           </Card.Section>
           <Text align="left">{item.text}</Text>

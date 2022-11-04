@@ -1,9 +1,14 @@
-import { Button } from "@mantine/core";
+import { Button, Group, TextInput } from "@mantine/core";
 import { useContext, useState } from "react";
 import { When } from "react-if";
 import { AuthContext } from "../../Context/Auth/Auth";
 
 const Login = () => {
+
+  let config = {
+    baseURL: '',
+    
+  }
   const [username, setUsername] = useState('');
   const [password, setpassword] = useState('');
 
@@ -19,19 +24,16 @@ const Login = () => {
   
   return(
     <>
-    <label>
-      <input placeholder='Username' onChange={(e) => setUsername(e.target.value)}/>
-    </label>
-    <label>
-      <input placeholder='Password' onChange={(e) => setpassword(e.target.value)}/>
-    </label>
+    <Group position='right'>
     <When condition={!isLoggedIn}>
+      <TextInput placeholder='Username' onChange={(e) => setUsername(e.target.value)}/>
+      <TextInput placeholder='Password' onChange={(e) => setpassword(e.target.value)}/>
       <Button onClick={()=> login(username, password)}>Login</Button>
     </When>
     <When condition={isLoggedIn}>
       <Button onClick={()=> logout()}>Logout</Button>
     </When>
-    
+    </Group>
 
     
     

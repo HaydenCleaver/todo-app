@@ -18,3 +18,6 @@
 - Starter code from Ryan's class demo / class repo was utilized for auth components and context.
 - Login and Logout work correctly.
 
+## Phase 4
+
+- User login and POST works with API.

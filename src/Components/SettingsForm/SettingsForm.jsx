@@ -50,6 +50,7 @@ const UserSettings = () => {
       <Grid.Col xs={12} sm={4}>
         <Card withBorder p="xs">
           <Text>Update Settings</Text>
+          
           <Switch label="Show Completed ToDos" checked={hideStatus} onChange={(event) => setHideStatus(event.currentTarget.checked)}/>
 
             <NumberInput

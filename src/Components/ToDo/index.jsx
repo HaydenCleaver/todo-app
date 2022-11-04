@@ -5,12 +5,8 @@ import useForm from '../../hooks/form.jsx';
 import Header from '../Header/Header';
 import List from '../List/List';
 import { v4 as uuid } from 'uuid';
+import axios from 'axios';
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
 const useStyles = createStyles((theme) => ({
   formHeading: {
     fontSize: theme.fontSizes.lg,
@@ -39,28 +35,52 @@ const ToDo = () => {
   const [incomplete, setIncomplete] = useState([]);
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
 
-  function addItem(item) {
-    item.id = uuid();
-    item.complete = false;
+  
+
+  async function addItem(item) {
     console.log(item);
-    setList([...list, item]);
+    let config = {
+      baseURL: 'https://api-js401.herokuapp.com',
+      url: '/api/v1/todo',
+      method: 'post',
+      data: {
+        assignee: item.assignee,
+        complete: false,
+        difficulty: item.difficulty,
+        text:item.text, 
+      }
+    }
+
+    await axios(config);
+    console.log(item);
+    // setList([...list, item]);
   }
 
   function deleteItem(id) {
+    //DELETE HERE
     const items = list.filter( item => item.id !== id );
     setList(items);
   }
 
   function toggleComplete(id) {
+    // UPDATE HERE
 
-    const items = list.map( item => {
-      if ( item.id === id ) {
-        item.complete = ! item.complete;
+    let config = {
+      baseURL: 'https://api-js401.herokuapp.com',
+      url: '/api/v1/todo',
+      method: 'put',
+      data: {
+        complete: false,
       }
-      return item;
-    });
+    }
+    // const items = list.map( item => {
+    //   if ( item.id === id ) {
+    //     item.complete = ! item.complete;
+    //   }
+    //   return item;
+    // });
 
-    setList(items);
+    // setList(items);
 
   }
 

@@ -10,8 +10,7 @@ import {
   Route
 } from "react-router-dom";
 
-export default class App extends React.Component {
-  render() {
+const App = () =>{
     return (
     <Router>
       <Header/>
@@ -26,4 +25,4 @@ export default class App extends React.Component {
     </Router>
     );
   }
-}
+export default App;
