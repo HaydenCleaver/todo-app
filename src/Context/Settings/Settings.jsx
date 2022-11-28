@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 export const SettingsContext = React.createContext();
 
-const Settings = ({children}) => {
+const SettingsProvider = ({children}) => {
 
 const[hideStatus, setHideStatus] = useState(false);
 const[itemNumber, setItemNumber] = useState(4);
@@ -12,6 +12,9 @@ const values = {
   hideStatus,
   itemNumber,
   sortField,
+  setHideStatus,
+  setItemNumber,
+  setSortField
 }
   return (
     <SettingsContext.Provider value={values}>
@@ -21,4 +24,4 @@ const values = {
 
 }
 
-export default Settings;
+export default SettingsProvider;

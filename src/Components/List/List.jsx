@@ -1,9 +1,19 @@
-import { Pagination, Card} from '@mantine/core';
+import { Pagination, Card, createStyles, Badge, Text, Group, CloseButton} from '@mantine/core';
 import {When} from 'react-if';
 import {useState, useContext} from 'react';
 import {SettingsContext} from '../../Context/Settings/Settings';
 
-const List = ({list, toggleComplete}) => {
+const useStyles = createStyles((theme) => ({
+  badge: {
+    textTransform: 'capitalize',
+    fontSize: theme.fontSizes.xs,
+    margin: '3px',
+  }
+}))
+
+const List = ({list, toggleComplete, deleteItem}) => {
+
+  const {classes} = useStyles();
 
   const{itemNumber, hideStatus} = useContext(SettingsContext);
   const[page, setPage] = useState(1);
@@ -18,11 +28,23 @@ const List = ({list, toggleComplete}) => {
   return(
     <>
       {displayList.map(item => (
-        <Card key={item.id} withBorder>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
+        <Card key={item.id} data-testid="list-item" withBorder>
+          <Card.Section withBorder>
+            <Group position='apart'>
+              <Group position='left'>
+                <Badge 
+                  className={classes.badge} 
+                  color={item.complete ? "green" : "red"} 
+                  variant="filled" onClick={()=> toggleComplete(item.id)}
+                  > {item.complete ? "Complete" : "Pending"}
+                </Badge>
+                <Text>{item.assignee}</Text>
+              </Group>
+              <CloseButton title="delete item" onClick={()=> deleteItem(item.id)}/>
+            </Group>
+          </Card.Section>
+          <Text align="left">{item.text}</Text>
+          <Text align="right">Difficulty: {item.difficulty}</Text>
         </Card>
       ))}
       <When condition={paginationList.length > 0}>

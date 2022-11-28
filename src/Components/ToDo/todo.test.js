@@ -1,10 +1,11 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import SettingsProvider from '../../Context/Settings/Settings';
 import ToDo from './index';
 
 describe('ToDo Component Tests', ()  => {
   test('render a header element as expected', () => {
-    render(<ToDo />);
+    render(<SettingsProvider><ToDo /></SettingsProvider>);
 
     let header = screen.getByTestId('todo-header');
     let h1 = screen.getByTestId('todo-h1');
@@ -12,5 +13,5 @@ describe('ToDo Component Tests', ()  => {
     expect(header).toBeTruthy();
     expect(header).toBeInTheDocument();
     expect(h1).toHaveTextContent('To Do List: 0 items pending');
-  })
+  });
 })
